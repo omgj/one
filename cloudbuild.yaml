@@ -1,0 +1,12 @@
+steps:
+  # build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/michaelsv/one', '.']
+  # push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/michaelsv/one']
+  # Deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'one', '--image', 'gcr.io/michaelsv/one', '--region', 'asia-northeast1','--platform', 'managed', '--quiet', '--allow-unauthenticated']
+images:
+- gcr.io/michaelsv/one
