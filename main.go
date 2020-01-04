@@ -10,6 +10,7 @@ import (
 )
 
 func yi(w http.ResponseWriter, r *http.Request) {
+	log.Println("here")
 	b, _ := ioutil.ReadFile("index.html")
 	io.WriteString(w, string(b))
 }
